@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="ConfirmButton.widget.ConfirmButton" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>Confirm Button</name>
+    <description>A button that will run a microflow, then if true, prompt the user for a confirmation.</description>
+
+    <icon />
+
+    <properties>
+        <property key="primaryMF" type="microflow" required="true">
+            <caption>Primary Microflow</caption>
+            <category>Behavior</category>
+            <description>The first microflow to run. Returns true if a prompt should be shown, false if not</description>
+            <returnType type="Boolean" />
+        </property>
+        <property key="confirmMF" type="microflow" required="true">
+            <caption>Confirm Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to run if the user clicks OK on the confirmation prompt</description>
+            <returnType type="Void" />
+        </property>	
+		<property key="buttonText" type="string" required="false" defaultValue="">
+            <caption>Button Text</caption>
+            <category>Appearance</category>
+            <description>The text of the button.</description>
+        </property>		
+		<property key="buttonClass" type="string" required="false" defaultValue="">
+            <caption>Button CSS Class</caption>
+            <category>Appearance</category>
+            <description>The CSS class(es) to be added to the button. Seperate multiple classes with spaces.</description>
+        </property>			
+		<property key="promptText" type="string" required="true" defaultValue="Please confirm">
+            <caption>Prompt Text</caption>
+            <category>Appearance</category>
+            <description>The confirmation prompt text</description>
+        </property>
+		
+		<property key="okText" type="string" required="true" defaultValue="Ok">
+            <caption>OK Button Text</caption>
+            <category>Appearance</category>
+            <description>The label of the OK button in the confirmation prompt</description>
+        </property>
+		<property key="cancelText" type="string" required="true" defaultValue="Cancel">
+            <caption>Cancel Button Text</caption>
+            <category>Appearance</category>
+            <description>The label of the Cancel button in the confirmation prompt</description>
+        </property>
+    </properties>
+</widget>
+
