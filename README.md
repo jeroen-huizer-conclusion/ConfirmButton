@@ -1,15 +1,8 @@
-# App Store Widget Boilerplate
+# Confirm Button
 
-This boilerplate gives you all you need to start a new custom widget for Mendix
-5.6.0 and up.
+This Mendix widget renders a button. It allows you to easily create an optional confirmation workflow. Saves the effort of creating an extra pop-up page and buttons. It also works together with the MobileNativeFeatures - MobileDialog widget so you can show a native mobile confirmation prompt.
 
-The boilerplate contains:
-- Directory structure
-- Readme.md
-- License
-- JavaScript source
-- XSD for package.xml, to configure properties of the widget, visible inside the
- Mendix business modeler
+When a user clicks the confirm button, a microflow will run to determine whether the user should see a confirmation prompt. If the microflow returns true, the user will get a confirmation prompt with 2 options: ok and cancel. If the user clicks ok, another microflow will run. If the user clicks cancel, the dialog will close.
 
 ## Contributing
 
@@ -17,74 +10,22 @@ For more information on contributing to this repository visit [Contributing to a
 
 ## Typical usage scenario
 
-Use this template to start building a widget for Mendix 5.
-Alter this README.md file and describe what your widget does.
- 
-## Description
+ - Add this widget as a "back" or "cancel" button to check for changes to the form before proceeding. (e.g., do you want to save your changes?)
+ - Add this widget as the "ok" button to check certain thresholds and alert the user if those thresholds are met/exceeded (e.g., This claim is for over $100k, is that correct?)
 
-The javascript inside the widget has examples of:
-- Using CSS within a widget
-- Using templating
-- Loading external library's
-- DOM manipulation
-- Event attaching
-- Loading data
-- Executing microflow and sending data
-- Working with the context object, which is an object in the current context
-(e.g. the one displayed in a DataView).
+## Configuration
 
-### Dojo AMD module list
+This widget has the following options that should be configured:
+ - Primary Microflow: the microflow that runs when you click on the button. It should return true if you want the confirmation prompt to appear, and false if not.
+ - Confirm Microflow: the microflow that should run if the user clicks "OK" from the confirmation prompt
+ - Button Text: the text for the confirmation button
+ - Button Class: a list CSS classes for the button, for example btn-primary
+ - Prompt Text: the text of the confirmation prompt
+ - Ok Button Text: the text in the "Ok" button of the confirmation prompt
+ - Cancel Button Text: the text in the "Cancel" button of the confirmation prompt
 
-The JavaScript contains an extensive list of modules that may be used to build a
-widget. It is best to reduce this list to what is actually used. Use JSHint to
-help identify errors and problems. 
+## Screenshots
 
-** Be sure to keep the module name array and the parameter list of the anonymous
-function below the module list in sync! **
+![Web Confirmation](https://github.com/tieniber/ConfirmButton/blob/master/assets/confirm-mendix.png)
 
-The following modules are necessary for all widgets:
-- dojo/_base/declare
-- mxui/widget/_WidgetBase
-- dijit/_Widget
-
-If your widget does not use an HTML template:
-- Remove dijit/_TemplatedMixin from the module list
-- Remove _Templated from the parameter list of the anonymous function below the module list
-- Remove _Templated from the parameter list of the declare call
-- Remove the templates folder
-
-If your widget does not need jQuery:
-- Remove WidgetName/widget/lib/jquery from the module list
-- Remove _jQuery from the parameter list of the anonymous function below the module list
-- Remove _jQuery from the parameter list of the declare call
-- Remove jquery.js from src\WidgetName\widget\lib\ Or remove the lib folder if you don't include external libraries in the widget.
-
-### AMD caveats
-Working with jQuery can be difficult due to the fact that jquery does not adhere to the AMD standard correctly. Check out [Pull Request #13](https://github.com/mendix/AppStoreWidgetBoilerplate/pull/13) or the [Dojo AMD documentation](http://dojotoolkit.org/documentation/tutorials/1.10/modules/index.html) for details.
-
-## Migrating a widget to Dojo AMD
-
-A widget that uses Dojo AMD may not refer to functions like *dojo.forEach* etc. 
-All necessary modules must be declared on the module list at the top of the source.
-
-Replacing all 'old' Dojo calls in an existing source can be a bit of a pain.
-
-Here is a list of commonly used functions and their new counterpart:
-
-Old | New
----------- |---------- 
-mxui.dom              | domMx
-dojo.byId             | dom.byId
-dojo.query            | document.querySelector
-dojo.forEach          | dojoArray.forEach
-dojo.hitch            | lang.hitch
-dojo.addClass         | domClass.add
-dojo.removeClass      | domClass.remove
-dojo.hasClass         | domClass.contains
-dojo.replaceClass     | domClass.replace
-dojo.empty            | domConstruct.empty
-dojo.place            | domConstruct.place 
-dojo.on               | on
-dojo.window           | win
-  
-The referenced modules are in the module list of the boilerplate JavaScript.
+![iOS Confirmation](https://github.com/tieniber/ConfirmButton/blob/master/assets/confirm-iOS.jpg)
